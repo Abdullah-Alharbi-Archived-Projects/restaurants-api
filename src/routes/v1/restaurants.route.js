@@ -1,4 +1,5 @@
 const { Router } = require("express");
+const menuRouter = require("./menuItem.route");
 
 const restaurantsController = require("../../controllers/restaurants.controller");
 const router = Router();
@@ -17,5 +18,8 @@ router.put("/:id/", restaurantsController.update);
 
 // DELETE /api/v1/restaurants/ -> delete one restaurant
 router.delete("/:id/", restaurantsController.destroy);
+
+// Menu router
+router.use("/:id/menu/", menuRouter);
 
 module.exports = router;
