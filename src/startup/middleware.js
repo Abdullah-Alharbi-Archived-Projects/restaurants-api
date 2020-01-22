@@ -6,4 +6,6 @@ module.exports = function(app) {
   app.use(json());
   app.use(helmet());
   app.use(compression()); // compress all responses
+
+  // TODO: need global catch middleware
 };
