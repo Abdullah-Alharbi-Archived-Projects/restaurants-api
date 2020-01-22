@@ -1,6 +1,11 @@
 const Restaurant = require("../models/Restaurant");
 
-async function index(request, response) {}
+async function index(request, response) {
+  const restaurant_id = request.app.get("restaurant_id");
+  const { menu } = await Restaurant.findById(restaurant_id);
+
+  response.send(menu);
+}
 
 async function show(request, response) {}
 
