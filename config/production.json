@@ -1,0 +1,16 @@
+{
+  "port": null,
+  "db": {
+    "url": "",
+    "useNewUrlParser": true,
+    "useFindAndModify": true
+  },
+  "logger": {
+    "active": false,
+    "level": "dev"
+  },
+  "static": "public",
+  "jwtSecretKey": "",
+  "etag": false,
+  "powered-by": true
+}
