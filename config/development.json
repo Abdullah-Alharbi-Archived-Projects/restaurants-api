@@ -12,5 +12,6 @@
   "static": "public",
   "jwtSecretKey": "superDoperSecretKey",
   "etag": false,
-  "powered-by": true
+  "powered-by": true,
+  "saltRounds": 10
 }
