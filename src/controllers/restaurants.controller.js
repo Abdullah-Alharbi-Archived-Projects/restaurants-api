@@ -21,7 +21,19 @@ async function create(request, response) {
   response.status(201).send({ message: "Created", restaurant });
 }
 
-function update(request, response) {}
+async function update(request, response) {
+  const { id } = request.params;
+  const { name, logoPath = "" } = request.body;
+  const restaurant = await Restaurant.findByIdAndUpdate(
+    id,
+    { name, logoPath },
+    { new: true }
+  );
+
+  if (restaurant) return response.send({ message: "Updated", restaurant });
+
+  return response.status(404).send({ message: "Restaurant Not Found" });
+}
 
 function destroy(request, response) {}
 
