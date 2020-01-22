@@ -36,7 +36,14 @@ async function update(request, response) {
   return response.status(404).send({ message: "Restaurant Not Found" });
 }
 
-function destroy(request, response) {}
+async function destroy(request, response) {
+  const { id } = request.params;
+  const restaurant = await Restaurant.findByIdAndDelete(id);
+
+  if (restaurant) return response.send({ message: "Deleted", restaurant });
+
+  return response.status(404).send({ message: "Restaurant Not Found" });
+}
 
 module.exports = {
   index,
