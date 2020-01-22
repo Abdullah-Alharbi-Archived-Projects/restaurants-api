@@ -6,8 +6,11 @@ const menuItemSchema = new Schema({
     required: true
   },
   description: {
-    type: String
+    type: String,
+    default: "No Description"
   }
 });
 
-module.exports = { menuItemSchema };
+const MenuItemModel = model("MenuItem", menuItemSchema);
+
+module.exports = { menuItemSchema, MenuItemModel };
