@@ -46,7 +46,14 @@ async function update(request, response) {
   return response.status(404).send({ message: "User Not Found" });
 }
 
-async function destroy(request, response) {}
+async function destroy(request, response) {
+  const { id } = request.params;
+  const user = await User.findByIdAndDelete(id);
+
+  if (user) return response.send({ message: "Deleted", user });
+
+  return response.status(404).send({ message: "User Not Found" });
+}
 
 module.exports = {
   index,
