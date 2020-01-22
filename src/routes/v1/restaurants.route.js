@@ -20,6 +20,13 @@ router.put("/:id/", restaurantsController.update);
 router.delete("/:id/", restaurantsController.destroy);
 
 // Menu router
+
+// param method allows you to execute a callback if a certain param is present in the route
+router.param("id", (request, response, next) => {
+  request.app.set("restaurant_id", request.params.id);
+  next();
+});
+
 router.use("/:id/menu/", menuRouter);
 
 module.exports = router;
