@@ -4,11 +4,13 @@ const { menuItemSchema: MenuItem } = require("./MenuItem");
 const restaurantSchema = new Schema({
   name: {
     type: String,
-    required: true
+    required: true,
+    trim: true
   },
   logoPath: {
     type: String,
-    default: ""
+    default: "",
+    trim: true
   },
   images: [
     {
