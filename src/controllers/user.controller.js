@@ -25,7 +25,20 @@ async function create(request, response) {
   response.status(201).send({ message: "Created", user });
 }
 
-async function update(request, response) {}
+async function update(request, response) {
+  const { id } = request.params;
+  const { firstName, lastName, email, password } = request.body;
+
+  const user = await User.findByIdAndUpdate(
+    id,
+    { firstName, lastName, email, password },
+    { new: true, omitUndefined: true }
+  );
+
+  if (user) return response.send({ message: "Updated", user });
+
+  return response.status(404).send({ message: "User Not Found" });
+}
 
 async function destroy(request, response) {}
 
