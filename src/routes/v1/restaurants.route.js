@@ -1,21 +1,21 @@
 const { Router } = require("express");
 
-const menuItemController = require("../../controllers/restaurants.controller");
+const restaurantsController = require("../../controllers/restaurants.controller");
 const router = Router();
 
 // GET /api/v1/restaurants/ -> show all restaurants
-router.get("/", menuItemController.index);
+router.get("/", restaurantsController.index);
 
 // GET /api/v1/restaurants/:id -> show one restaurant
-router.get("/:id/", menuItemController.show);
+router.get("/:id/", restaurantsController.show);
 
 // POST /api/v1/restaurants/ -> create new restaurant
-router.post("/", menuItemController.create);
+router.post("/", restaurantsController.create);
 
 // PUT /api/v1/restaurants/ -> update restaurant
-router.put("/:id/", menuItemController.update);
+router.put("/:id/", restaurantsController.update);
 
 // DELETE /api/v1/restaurants/ -> delete one restaurant
-router.delete("/:id/", menuItemController.destroy);
+router.delete("/:id/", restaurantsController.destroy);
 
 module.exports = router;
