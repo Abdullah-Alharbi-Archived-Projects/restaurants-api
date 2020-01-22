@@ -8,7 +8,17 @@ async function index(request, response) {
   response.send(menu);
 }
 
-async function show(request, response) {}
+async function show(request, response) {
+  const { item: id } = request.params;
+  const restaurant_id = request.app.get("restaurant_id");
+  const { menu } = await Restaurant.findById(restaurant_id);
+
+  const item = menu.id(id);
+
+  if (item) return response.send(item);
+
+  return response.status(404).send({ message: "Item Not Found." });
+}
 
 async function create(request, response) {
   const restaurant_id = request.app.get("restaurant_id");
