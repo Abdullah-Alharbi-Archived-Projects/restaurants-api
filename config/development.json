@@ -1,7 +1,7 @@
 {
   "port": 8001,
   "db": {
-    "url": "mongodb://localhost/playground",
+    "url": "mongodb://localhost/restaurants-app",
     "useNewUrlParser": true,
     "useFindAndModify": true
   },
