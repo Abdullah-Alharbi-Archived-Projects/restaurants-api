@@ -7,7 +7,13 @@ async function index(request, response) {
 
 function show(request, response) {}
 
-function create(request, response) {}
+async function create(request, response) {
+  const { name, logoPath } = request.body;
+  // TODO: validate data
+  let restaurant = new Restaurant({ name, logoPath });
+  restaurant = await restaurant.save();
+  response.send({ message: "Created", restaurant });
+}
 
 function update(request, response) {}
 
