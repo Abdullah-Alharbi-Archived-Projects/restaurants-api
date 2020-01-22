@@ -5,7 +5,14 @@ async function index(request, response) {
   response.send(users);
 }
 
-async function show(request, response) {}
+async function show(request, response) {
+  const { id } = request.params;
+  const user = await User.findById(id);
+
+  if (user) return response.send(user);
+
+  return response.status(404).send({ message: "User Not Found" });
+}
 
 async function create(request, response) {
   const { firstName, lastName, email, password } = request.body;
