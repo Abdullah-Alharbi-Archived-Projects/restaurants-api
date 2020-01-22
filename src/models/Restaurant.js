@@ -7,7 +7,8 @@ const restaurantSchema = new Schema({
     required: true
   },
   logoPath: {
-    type: String
+    type: String,
+    default: ""
   },
   images: [
     {
