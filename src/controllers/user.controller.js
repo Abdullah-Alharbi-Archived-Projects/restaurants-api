@@ -37,7 +37,7 @@ async function update(request, response) {
 
   if (user) {
     if (password) {
-      user.encrypt(password);
+      await user.encrypt(password);
       await user.save();
     }
 
