@@ -18,8 +18,11 @@
     "express": "^4.17.1",
     "helmet": "^3.21.2",
     "i18n": "^0.8.4",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.8.9",
-    "morgan": "^1.9.1"
+    "morgan": "^1.9.1",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0"
   },
   "devDependencies": {
     "jest": "^25.1.0",
