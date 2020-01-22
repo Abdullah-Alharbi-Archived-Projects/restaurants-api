@@ -1,4 +1,5 @@
 const Restaurant = require("../models/Restaurant");
+const { MenuItemModel: MenuItem } = require("../models/MenuItem");
 
 async function index(request, response) {
   const restaurant_id = request.app.get("restaurant_id");
@@ -9,7 +10,23 @@ async function index(request, response) {
 
 async function show(request, response) {}
 
-async function create(request, response) {}
+async function create(request, response) {
+  const restaurant_id = request.app.get("restaurant_id");
+
+  const restaurant = await Restaurant.findById(restaurant_id);
+
+  if (restaurant) {
+    const { title, description } = request.body;
+    let item = new MenuItem({ title, description });
+    restaurant.menu.push(item);
+    const { menu } = await restaurant.save();
+
+    item = menu[menu.length - 1];
+    return response.send({ message: "Created", item });
+  }
+
+  return response.send({ message: "Restaurant Not Found" });
+}
 
 async function update(request, response) {}
 
