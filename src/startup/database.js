@@ -8,7 +8,7 @@ module.exports = function() {
     .connect(config.get("db.url"), {
       useNewUrlParser: config.get("db.useNewUrlParser"),
       useFindAndModify: config.get("db.useFindAndModify"),
-      useUnifiedTopology: false
+      useUnifiedTopology: true
     })
     .then(() => dbDebugger("Database connected successfully."))
     .catch(O_O => dbDebugger("Unable to connect to mongodb.", O_O));
