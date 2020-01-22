@@ -3,21 +3,27 @@ const { MenuItemModel: MenuItem } = require("../models/MenuItem");
 
 async function index(request, response) {
   const restaurant_id = request.app.get("restaurant_id");
-  const { menu } = await Restaurant.findById(restaurant_id);
+  const restaurant = await Restaurant.findById(restaurant_id);
 
-  response.send(menu);
+  if (restaurant) return response.send(restaurant.menu);
+
+  return response.status(404).send({ message: "Restaurant Not Found." });
 }
 
 async function show(request, response) {
   const { item: id } = request.params;
   const restaurant_id = request.app.get("restaurant_id");
-  const { menu } = await Restaurant.findById(restaurant_id);
+  const restaurant = await Restaurant.findById(restaurant_id);
 
-  const item = menu.id(id);
+  if (restaurant) {
+    const item = restaurant.menu.id(id);
 
-  if (item) return response.send(item);
+    if (item) return response.send(item);
 
-  return response.status(404).send({ message: "Item Not Found." });
+    return response.status(404).send({ message: "Item Not Found." });
+  }
+
+  return response.status(404).send({ message: "Restaurant Not Found." });
 }
 
 async function create(request, response) {
