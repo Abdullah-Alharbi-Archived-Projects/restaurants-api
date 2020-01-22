@@ -24,11 +24,11 @@ async function create(request, response) {
 
 async function update(request, response) {
   const { id } = request.params;
-  const { name, logoPath = "" } = request.body;
+  const { name, logoPath } = request.body;
   const restaurant = await Restaurant.findByIdAndUpdate(
     id,
     { name, logoPath },
-    { new: true }
+    { new: true, omitUndefined: true }
   );
 
   if (restaurant) return response.send({ message: "Updated", restaurant });
