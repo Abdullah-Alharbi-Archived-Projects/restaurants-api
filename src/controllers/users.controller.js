@@ -43,6 +43,7 @@ async function update(request, response) {
 
     return response.send({ message: "Updated", user });
   }
+
   return response.status(404).send({ message: "User Not Found" });
 }
 
