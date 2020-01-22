@@ -32,6 +32,11 @@ userSchema.methods = {
     const encryptedPassword = await hash(password, salt);
     this.password = encryptedPassword;
     return encryptedPassword;
+  },
+  toJSON: function() {
+    const user = this.toObject();
+    delete user.password;
+    return user;
   }
 };
 
