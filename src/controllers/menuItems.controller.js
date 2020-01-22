@@ -32,10 +32,10 @@ async function create(request, response) {
     const { menu } = await restaurant.save();
 
     item = menu[menu.length - 1];
-    return response.send({ message: "Created", item });
+    return response.status(201).send({ message: "Created", item });
   }
 
-  return response.send({ message: "Restaurant Not Found" });
+  return response.status(404).send({ message: "Restaurant Not Found" });
 }
 
 async function update(request, response) {}
