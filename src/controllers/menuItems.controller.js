@@ -69,7 +69,26 @@ async function update(request, response) {
   return response.status(404).send({ message: "Restaurant Not Found" });
 }
 
-async function destroy(request, response) {}
+async function destroy(request, response) {
+  const restaurant_id = request.app.get("restaurant_id");
+
+  const restaurant = await Restaurant.findById(restaurant_id);
+
+  if (restaurant) {
+    const { item: id } = request.params;
+
+    const item = restaurant.menu.id(id);
+
+    if (item) {
+      item.remove();
+      await restaurant.save();
+      return response.send({ message: "Deleted", item });
+    }
+
+    return response.status(404).send({ message: "Item Not Found." });
+  }
+  return response.status(404).send({ message: "Restaurant Not Found" });
+}
 
 module.exports = {
   index,
