@@ -18,7 +18,7 @@ async function create(request, response) {
   // TODO: validate data
   let restaurant = new Restaurant({ name, logoPath });
   restaurant = await restaurant.save();
-  response.send({ message: "Created", restaurant });
+  response.status(201).send({ message: "Created", restaurant });
 }
 
 function update(request, response) {}
