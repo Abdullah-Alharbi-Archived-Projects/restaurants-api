@@ -9,8 +9,9 @@ async function show(request, response) {
   const { id } = request.params;
   const restaurant = await Restaurant.findById(id);
 
-  if (restaurant) response.send(restaurant);
-  else response.status(404).send({ message: "Restaurant Not Found" });
+  if (restaurant) return response.send(restaurant);
+
+  return response.status(404).send({ message: "Restaurant Not Found" });
 }
 
 async function create(request, response) {
