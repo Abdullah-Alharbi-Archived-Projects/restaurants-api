@@ -23,7 +23,7 @@ const userSchema = new Schema({
 });
 
 userSchema.methods = {
-  validate: async function(password) {
+  compare: async function(password) {
     const result = await compare(password, this.password);
     return result;
   },
