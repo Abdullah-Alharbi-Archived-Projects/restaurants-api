@@ -1,4 +1,4 @@
-const User = require("../models/User");
+const { User, validate } = require("../models/User");
 const redis = require("redis");
 
 async function authenticate(request, response) {}
