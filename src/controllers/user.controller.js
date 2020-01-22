@@ -35,8 +35,14 @@ async function update(request, response) {
     { new: true, omitUndefined: true }
   );
 
-  if (user) return response.send({ message: "Updated", user });
+  if (user) {
+    if (password) {
+      user.encrypt(password);
+      await user.save();
+    }
 
+    return response.send({ message: "Updated", user });
+  }
   return response.status(404).send({ message: "User Not Found" });
 }
 
