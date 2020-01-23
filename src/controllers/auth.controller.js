@@ -43,6 +43,11 @@ async function authenticate(request, response) {
 
   const token = user.generate();
 
+  // save token in redis
+  const redis = request.app.get("redis");
+
+  await redis.set(user._id, token);
+
   return response.send({ message: "Generated Successfully", token });
 }
 
