@@ -9,6 +9,6 @@ const router = Router();
 // resources goes here
 router.use("/users/", users);
 router.use("/restaurants/", restaurants);
-router.use("/auth/", restaurants);
+router.use("/auth/", auth);
 
 module.exports = router;
