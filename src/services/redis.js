@@ -71,10 +71,6 @@ class Redis {
     });
   }
 
-  test() {
-    console.log(this);
-  }
-
   async validate(id, token) {
     const reply = await this.get(id);
     return reply === token ? true : false;
