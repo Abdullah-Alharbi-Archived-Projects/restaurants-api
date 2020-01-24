@@ -22,21 +22,21 @@ async function authenticate(request, response) {
 
   if (error)
     return response
-      .status(401)
+      .status(400)
       .send({ message: "Bad Request", details: error.details });
 
   const user = await User.findOne({ email });
 
   if (!user)
     return response
-      .status(401)
+      .status(400)
       .send({ message: "the email or password is uncorrect." });
 
   const result = await user.compare(password);
 
   if (!result)
     return response
-      .status(401)
+      .status(400)
       .send({ message: "the email or password is uncorrect." });
 
   // user data is correct generate token
