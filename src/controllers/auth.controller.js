@@ -51,6 +51,15 @@ async function authenticate(request, response) {
   return response.send({ message: "Generated Successfully", token });
 }
 
-async function logout(request, response) {}
+async function logout(request, response) {
+  const user = request.user;
+  const reply = await request.redis.del(user._id);
+
+  if (reply) {
+    return response.send({ message: "Signed out Successfully." });
+  }
+
+  response.status(401).send({ message: "Unauthorized." });
+}
 
 module.exports = { authenticate, logout };
