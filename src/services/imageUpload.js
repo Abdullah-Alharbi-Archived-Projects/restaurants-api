@@ -7,7 +7,6 @@ module.exports = function(files, path = "/uploads") {
       _.forEach(_.keysIn(files), key => {
         const file = files[key];
         file.mv(`${path}/${uuid()}.${file.mimetype}`);
-        // TODO: save in images
       });
       resolve(true);
     } catch (error) {
