@@ -5,7 +5,6 @@ const imageSchema = new Schema({
     type: String,
     required: true
   }
-  // TODO: add user BackRef
 });
 
 const Image = model("Image", imageSchema);
