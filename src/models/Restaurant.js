@@ -18,7 +18,11 @@ const restaurantSchema = new Schema({
       ref: "Image"
     }
   ],
-  menu: [MenuItem]
+  menu: [MenuItem],
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: "User"
+  }
 });
 
 const Restaurant = model("Restaurant", restaurantSchema);

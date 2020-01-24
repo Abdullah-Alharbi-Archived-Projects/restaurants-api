@@ -8,6 +8,10 @@ const menuItemSchema = new Schema({
   description: {
     type: String,
     default: "No Description"
+  },
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: "User"
   }
 });
 
