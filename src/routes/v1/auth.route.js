@@ -1,11 +1,13 @@
 const { Router } = require("express");
 
 const { authenticate, logout } = require("../../controllers/auth.controller");
+const $authenticated = require("../../middleware/authenticated");
+const $redis = require("../../middleware/redis");
 
 const router = Router();
 
 router.post("/", authenticate);
 
-router.post("/logout", logout);
+router.delete("/", $authenticated, $redis, logout);
 
 module.exports = router;
