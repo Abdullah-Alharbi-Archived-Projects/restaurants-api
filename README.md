@@ -29,3 +29,8 @@ Full API for Restaurants
 3. Create new user `POST /users/`
 4. Update user `PUT /users/<ID>`
 5. Delete user `DELETE /user/<ID>`
+
+##### Authentication
+
+1. Authenticate `POST /auth/`
+2. Sign out `DELETE /auth/`
