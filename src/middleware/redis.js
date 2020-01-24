@@ -1,4 +1,4 @@
-const { ExtractJwt } = require("passport-jwt");
+const extractJwt = require("../services/extractJwt");
 
 module.exports = async function(request, response, next) {
   const user = request.user;
@@ -6,9 +6,8 @@ module.exports = async function(request, response, next) {
 
   const reply = await redis.get(user._id);
 
-  const authorization = ExtractJwt.fromAuthHeaderAsBearerToken()(request);
-
-  if (reply === authorization) {
+  const token = extractJwt(request);
+  if (reply === token) {
     request.redis = redis;
     return next();
   }
