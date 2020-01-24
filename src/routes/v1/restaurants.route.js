@@ -2,6 +2,10 @@ const { Router } = require("express");
 const menuRouter = require("./menuItem.route");
 
 const restaurantsController = require("../../controllers/restaurants.controller");
+
+const $authenticated = require("../../middleware/authenticated");
+const $redis = require("../../middleware/redis");
+
 const router = Router();
 
 // GET /api/v1/restaurants/ -> show all restaurants
@@ -11,13 +15,13 @@ router.get("/", restaurantsController.index);
 router.get("/:id/", restaurantsController.show);
 
 // POST /api/v1/restaurants/ -> create new restaurant
-router.post("/", restaurantsController.create);
+router.post("/", $authenticated, $redis, restaurantsController.create);
 
 // PUT /api/v1/restaurants/ -> update restaurant
-router.put("/:id/", restaurantsController.update);
+router.put("/:id/", $authenticated, $redis, restaurantsController.update);
 
 // DELETE /api/v1/restaurants/ -> delete one restaurant
-router.delete("/:id/", restaurantsController.destroy);
+router.delete("/:id/", $authenticated, $redis, restaurantsController.destroy);
 
 // Menu router
 
