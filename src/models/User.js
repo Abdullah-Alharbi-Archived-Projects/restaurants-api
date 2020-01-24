@@ -3,6 +3,7 @@ const { compare, hash, genSalt } = require("bcrypt");
 const Joi = require("@hapi/joi");
 const jwt = require("jsonwebtoken");
 const config = require("config");
+const { imageSchema: Image } = require("./Image");
 
 const userSchema = new Schema({
   firstName: {
@@ -23,7 +24,8 @@ const userSchema = new Schema({
   },
   password: {
     type: String
-  }
+  },
+  images: [Image]
 });
 
 userSchema.methods = {
