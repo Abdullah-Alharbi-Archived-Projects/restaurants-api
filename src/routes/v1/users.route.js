@@ -1,6 +1,7 @@
 const { Router } = require("express");
 
 const userController = require("../../controllers/users.controller");
+const $notAuthenticated = require("../../middleware/notAuthenticated");
 const router = Router();
 
 // -------- [ADMIN] --------
@@ -19,7 +20,6 @@ router.put("/:id/", userController.update);
 // -------- [Guest] --------
 
 // POST /api/v1/users/ -> register new user [Guest]
-// TODO: need custom middleware to register token
-router.post("/", userController.create);
+router.post("/", $notAuthenticated, userController.create);
 
 module.exports = router;
