@@ -14,7 +14,7 @@ module.exports = function(app) {
   app.use(compression()); // compress all responses
   app.use(
     fileUpload({
-      debug: true,
+      debug: config.get("logger.active"),
       createParentPath: true
     })
   );
