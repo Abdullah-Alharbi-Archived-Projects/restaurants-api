@@ -15,7 +15,6 @@ module.exports = function(app) {
   app.use(
     fileUpload({
       debug: true,
-      safeFileNames: true,
       createParentPath: true
     })
   );
