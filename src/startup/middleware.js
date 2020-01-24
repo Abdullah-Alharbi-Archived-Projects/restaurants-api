@@ -1,4 +1,4 @@
-const { json } = require("express");
+const { json, urlencoded } = require("express");
 const helmet = require("helmet");
 const compression = require("compression");
 const passport = require("passport");
@@ -8,6 +8,7 @@ const { User } = require("../models/User");
 
 module.exports = function(app) {
   app.use(json());
+  app.use(urlencoded({ extended: true }));
   app.use(helmet());
   app.use(compression()); // compress all responses
 
