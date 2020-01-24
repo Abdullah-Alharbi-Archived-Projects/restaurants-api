@@ -4,6 +4,7 @@ const compression = require("compression");
 const passport = require("passport");
 const { Strategy: JwtStrategy, ExtractJwt } = require("passport-jwt");
 const config = require("config");
+const fileUpload = require("express-fileupload");
 const { User } = require("../models/User");
 
 module.exports = function(app) {
@@ -11,6 +12,13 @@ module.exports = function(app) {
   app.use(urlencoded({ extended: true }));
   app.use(helmet());
   app.use(compression()); // compress all responses
+  app.use(
+    fileUpload({
+      debug: true,
+      safeFileNames: true,
+      createParentPath: true
+    })
+  );
 
   // passport setup
   app.use(passport.initialize());
