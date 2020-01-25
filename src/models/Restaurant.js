@@ -8,18 +8,23 @@ const restaurantSchema = new Schema({
     required: true,
     trim: true
   },
-  logoPath: Image,
-  images: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Image"
+  address: {
+    city: {
+      type: String,
+      trim: true
+    },
+    street: {
+      type: String,
+      trim: true
     }
-  ],
+  },
   menu: [MenuItem],
   user: {
     type: Schema.Types.ObjectId,
     ref: "User"
-  }
+  },
+  logoPath: Image,
+  images: [Image]
 });
 
 const Restaurant = model("Restaurant", restaurantSchema);
