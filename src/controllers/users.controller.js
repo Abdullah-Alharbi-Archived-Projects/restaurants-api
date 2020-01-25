@@ -16,6 +16,12 @@ async function show(request, response) {
 
 async function create(request, response) {
   const { firstName, lastName, email, password } = request.body;
+
+  const result = await User.findOne({ email });
+  if (result) {
+    return response.status(400).send({ message: "User is Exists." });
+  }
+
   let user = new User({ firstName, lastName, email, password });
 
   await user.encrypt(password);
