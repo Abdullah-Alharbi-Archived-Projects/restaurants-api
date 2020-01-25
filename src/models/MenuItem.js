@@ -1,4 +1,5 @@
 const { Schema, model } = require("mongoose");
+const { imageSchema: Image } = require("./Image");
 
 const menuItemSchema = new Schema({
   title: {
@@ -12,7 +13,8 @@ const menuItemSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
     ref: "User"
-  }
+  },
+  images: [Image]
 });
 
 const MenuItemModel = model("MenuItem", menuItemSchema);

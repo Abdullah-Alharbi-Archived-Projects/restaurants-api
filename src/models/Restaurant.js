@@ -1,5 +1,6 @@
 const { Schema, model } = require("mongoose");
 const { menuItemSchema: MenuItem } = require("./MenuItem");
+const { imageSchema: Image } = require("./Image");
 
 const restaurantSchema = new Schema({
   name: {
@@ -7,11 +8,7 @@ const restaurantSchema = new Schema({
     required: true,
     trim: true
   },
-  logoPath: {
-    type: String,
-    default: "",
-    trim: true
-  },
+  logoPath: Image,
   images: [
     {
       type: Schema.Types.ObjectId,
