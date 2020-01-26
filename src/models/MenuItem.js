@@ -10,10 +10,6 @@ const menuItemSchema = new Schema({
     type: String,
     default: "No Description"
   },
-  user: {
-    type: Schema.Types.ObjectId,
-    ref: "User"
-  },
   images: [Image]
 });
 
