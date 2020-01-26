@@ -48,10 +48,10 @@ async function create(request, response) {
 
 async function update(request, response) {
   const { id } = request.params;
-  const { name, logoPath } = request.body;
+  const { name, address } = request.body;
   const restaurant = await Restaurant.findByIdAndUpdate(
     id,
-    { name, logoPath },
+    { name, address },
     { new: true, omitUndefined: true }
   );
 
