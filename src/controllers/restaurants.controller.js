@@ -55,7 +55,16 @@ async function update(request, response) {
     { new: true, omitUndefined: true }
   );
 
-  if (restaurant) return response.send({ message: "Updated", restaurant });
+  if (restaurant) {
+    if (request.files) {
+      // TODO: delete old logo
+      const { logoPath } = request.files;
+      let [result, paths] = uploadService([logoPath]);
+      if (result) restaurant.logoPath = new Image({ path: paths[0] });
+    }
+    await restaurant.save();
+    return response.send({ message: "Updated", restaurant });
+  }
 
   return response.status(404).send({ message: "Restaurant Not Found" });
 }
