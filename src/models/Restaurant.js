@@ -1,6 +1,7 @@
 const { Schema, model } = require("mongoose");
 const { menuItemSchema: MenuItem } = require("./MenuItem");
 const { imageSchema: Image } = require("./Image");
+const { commentsSchema: Comment } = require("./Comment");
 
 const restaurantSchema = new Schema({
   name: {
@@ -18,12 +19,13 @@ const restaurantSchema = new Schema({
       trim: true
     }
   },
-  menu: [MenuItem],
   user: {
     type: Schema.Types.ObjectId,
     ref: "User"
   },
   logoPath: Image,
+  menu: [MenuItem],
+  comments: [Comment],
   images: [Image]
 });
 

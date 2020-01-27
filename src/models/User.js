@@ -24,8 +24,7 @@ const userSchema = new Schema({
   },
   password: {
     type: String
-  },
-  images: [Image]
+  }
 });
 
 userSchema.methods = {
