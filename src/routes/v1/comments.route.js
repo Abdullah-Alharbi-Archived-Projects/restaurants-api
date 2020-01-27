@@ -8,6 +8,7 @@ const $redis = require("../../middleware/redis");
 const router = Router();
 
 router.get("/", commentsController.index);
+router.get("/:comment/", commentsController.show);
 
 router.post("/", $authenticated, $redis, commentsController.create);
 
