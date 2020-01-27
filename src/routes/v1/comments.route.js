@@ -1,6 +1,6 @@
 const { Router } = require("express");
 
-const commentsController = require("../../controllers/comments.controller");
+const commentsController = require("../../controllers/v1/comments.controller");
 
 const $authenticated = require("../../middleware/authenticated");
 const $redis = require("../../middleware/redis");
