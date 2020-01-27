@@ -1,4 +1,4 @@
-const { User } = require("../models/User");
+const { User } = require("../../models/User");
 const Joi = require("@hapi/joi");
 
 function validate(user) {

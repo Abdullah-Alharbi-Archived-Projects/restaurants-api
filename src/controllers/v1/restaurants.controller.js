@@ -1,4 +1,4 @@
-const Restaurant = require("../models/Restaurant");
+const Restaurant = require("../../models/Restaurant");
 
 async function index(request, response) {
   const restaurants = await Restaurant.find().populate("user");

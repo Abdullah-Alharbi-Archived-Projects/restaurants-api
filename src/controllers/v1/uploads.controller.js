@@ -1,7 +1,7 @@
-const uploadService = require("../services/imageUpload");
-const deleteService = require("../services/imageDelete");
-const { Image } = require("../models/Image");
-const Restaurant = require("../models/Restaurant");
+const uploadService = require("../../services/imageUpload");
+const deleteService = require("../../services/imageDelete");
+const { Image } = require("../../models/Image");
+const Restaurant = require("../../models/Restaurant");
 
 async function upload(request, response) {
   if (!request.files)

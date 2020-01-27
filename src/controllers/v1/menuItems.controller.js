@@ -1,8 +1,8 @@
-const Restaurant = require("../models/Restaurant");
-const { MenuItemModel: MenuItem } = require("../models/MenuItem");
-const uploadService = require("../services/imageUpload");
-const { User } = require("../models/User");
-const { Image } = require("../models/Image");
+const Restaurant = require("../../models/Restaurant");
+const { MenuItemModel: MenuItem } = require("../../models/MenuItem");
+const uploadService = require("../../services/imageUpload");
+const { User } = require("../../models/User");
+const { Image } = require("../../models/Image");
 const _ = require("lodash");
 
 async function index(request, response) {

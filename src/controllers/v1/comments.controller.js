@@ -1,5 +1,5 @@
-const { Comment } = require("../models/Comment");
-const Restaurant = require("../models/Restaurant");
+const { Comment } = require("../../models/Comment");
+const Restaurant = require("../../models/Restaurant");
 const _ = require("lodash");
 
 async function index(request, response) {

@@ -1,5 +1,5 @@
-const { User } = require("../models/User");
-const Restaurant = require("../models/Restaurant");
+const { User } = require("../../models/User");
+const Restaurant = require("../../models/Restaurant");
 
 async function index(request, response) {
   const user = await User.findById(request.user._id);
