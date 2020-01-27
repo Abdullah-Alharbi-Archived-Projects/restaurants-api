@@ -40,6 +40,32 @@ async function upload(request, response) {
 
       return response.status(404).send({ message: `Restaurant Not Found.` });
 
+    case "menu":
+      const restaurants = await Restaurant.find();
+
+      const data = restaurants.filter(r => r.menu.id(target))[0];
+
+      const item = await data.menu.id(target);
+
+      if (data) {
+        const [result, paths] = uploadService(images);
+
+        if (result) {
+          paths.forEach(path => {
+            const image = new Image(path);
+            item.images.push(image);
+          });
+
+          const updatedItem = await data.save();
+          return response.send({
+            message: "Uploaded Successfully",
+            updatedItem
+          });
+        }
+      }
+
+      return response.status(404).send({ message: `Item Not Found.` });
+
     default:
       return response
         .status(404)
@@ -72,6 +98,26 @@ async function destroy(request, response) {
       }
 
       return response.status(404).send({ message: "Restaurant Not Found." });
+
+    case "menu":
+      const restaurants = await Restaurant.find();
+
+      const data = restaurants.filter(r => r.menu.id(target))[0];
+
+      const menuItem = await data.menu.id(target);
+
+      if (menuItem) {
+        items.forEach(async item => {
+          const image = await menuItem.images.id(item);
+
+          if (image) {
+            await deleteService(await image.remove());
+          }
+        });
+        await data.save();
+        return response.send({ message: "Images Deleted!" });
+      }
+      return response.status(404).send({ message: `Item Not Found.` });
 
     default:
       return response
