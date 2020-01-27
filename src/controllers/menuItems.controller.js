@@ -1,5 +1,8 @@
 const Restaurant = require("../models/Restaurant");
 const { MenuItemModel: MenuItem } = require("../models/MenuItem");
+const uploadService = require("../services/imageUpload");
+const { User } = require("../models/User");
+const { Image } = require("../models/Image");
 const _ = require("lodash");
 
 async function index(request, response) {
@@ -35,6 +38,18 @@ async function create(request, response) {
   if (restaurant) {
     const { title, description } = request.body;
     let item = new MenuItem({ title, description });
+
+    if (request.files) {
+      const [result, paths] = uploadService(request.files);
+
+      if (result) {
+        paths.forEach(path => {
+          const image = new Image({ path });
+          item.images.push(image);
+        });
+      }
+    }
+
     restaurant.menu.push(item);
     const { menu } = await restaurant.save();
 
