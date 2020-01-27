@@ -8,7 +8,7 @@ const router = Router();
 // versions goes here
 router.use("/v1/", v1);
 
-// google map api
+// google map api + admin api
 router.use("/v2/", v2);
 
 module.exports = router;
