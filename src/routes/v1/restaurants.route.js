@@ -1,5 +1,6 @@
 const { Router } = require("express");
 const menuRouter = require("./menuItem.route");
+const commentsRouter = require("./comments.route");
 
 const restaurantsController = require("../../controllers/restaurants.controller");
 
@@ -32,5 +33,7 @@ router.param("id", (request, response, next) => {
 });
 
 router.use("/:id/menu/", menuRouter);
+
+router.use("/:id/comments/", commentsRouter);
 
 module.exports = router;

@@ -7,6 +7,13 @@ const $redis = require("../../middleware/redis");
 
 const router = Router();
 
-router.post("/", $authenticated, $redis, uploadsController.upload);
+router.post(
+  "/:resource/:target/",
+  $authenticated,
+  $redis,
+  uploadsController.upload
+);
+
+router.delete("/:resource/:target/", uploadsController.destroy);
 
 module.exports = router;
