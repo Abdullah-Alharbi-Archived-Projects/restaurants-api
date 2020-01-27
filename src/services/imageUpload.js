@@ -4,6 +4,7 @@ const config = require("config");
 
 module.exports = function(files, folder = "uploads") {
   try {
+    files = _.flatten(files);
     const paths = [];
     _.forEach(_.keysIn(files), key => {
       const file = files[key];
@@ -11,7 +12,10 @@ module.exports = function(files, folder = "uploads") {
       const name = uuid() + extention;
       file.mv(`./src/${config.get("static")}/${folder}/${name}`);
 
-      paths.push(`/${folder}/${name}`);
+      paths.push({
+        path: `/${folder}/${name}`,
+        name
+      });
     });
 
     return [true, paths];
