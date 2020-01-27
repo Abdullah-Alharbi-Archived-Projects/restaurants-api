@@ -21,7 +21,8 @@ class Redis {
 
   get(key) {
     return new Promise((resolve, reject) => {
-      this._client.get(key, (error, reply) => {
+      // convert key to string since key might be ObjectID type
+      this._client.get(`${key}`, (error, reply) => {
         if (error) return reject(error);
 
         this._logger(`[GET_KEY] ${key}`);
