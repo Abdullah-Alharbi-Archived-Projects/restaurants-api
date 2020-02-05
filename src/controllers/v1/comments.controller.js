@@ -7,6 +7,7 @@ async function index(request, response) {
 
   const restaurant = await Restaurant.findById(restaurant_id);
 
+  // need middleware to check for this
   if (!restaurant)
     return response.status(404).send({ message: "Restaurant Not Found." });
 

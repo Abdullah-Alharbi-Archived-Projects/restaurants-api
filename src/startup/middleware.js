@@ -6,6 +6,7 @@ const { Strategy: JwtStrategy, ExtractJwt } = require("passport-jwt");
 const config = require("config");
 const fileUpload = require("express-fileupload");
 const { User } = require("../models/User");
+const cors = require("cors");
 
 module.exports = function(app) {
   app.use(json());
@@ -16,6 +17,12 @@ module.exports = function(app) {
     fileUpload({
       debug: config.get("logger.active"),
       createParentPath: true
+    })
+  );
+
+  app.use(
+    cors({
+      // origin: "http://localhost:3000"
     })
   );
 

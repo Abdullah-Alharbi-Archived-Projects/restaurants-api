@@ -2,7 +2,7 @@ const uploadService = require("../../services/imageUpload");
 const deleteService = require("../../services/imageDelete");
 const { Image } = require("../../models/Image");
 const Restaurant = require("../../models/Restaurant");
-
+// need refactoring use s3 !
 async function upload(request, response) {
   if (!request.files)
     return response.status(400).send({ message: "No Files Selected." });

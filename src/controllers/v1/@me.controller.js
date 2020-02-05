@@ -1,6 +1,6 @@
 const { User } = require("../../models/User");
 const Restaurant = require("../../models/Restaurant");
-
+// refactor functions to expression function
 async function index(request, response) {
   const user = await User.findById(request.user._id);
 

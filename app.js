@@ -12,7 +12,6 @@ require("./src/startup/config")(app);
 require("./src/startup/middleware")(app);
 require("./src/startup/routes")(app);
 require("./src/startup/redis")(app);
-require("./src/startup/cors")(app);
 
 app.listen(port, () =>
   serverDebugger(`Listening on http://localhost:${port}/ ...`)

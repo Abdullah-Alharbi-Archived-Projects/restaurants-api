@@ -1,6 +1,6 @@
 const { User } = require("../../models/User");
 const Joi = require("@hapi/joi");
-
+// create vaildator middleware
 function validate(user) {
   const schema = Joi.object({
     email: Joi.string()

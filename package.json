@@ -9,6 +9,7 @@
   },
   "keywords": [],
   "dependencies": {
+    "@google/maps": "^1.1.0",
     "@hapi/joi": "^17.1.0",
     "bcrypt": "^3.0.7",
     "compression": "^1.7.4",
