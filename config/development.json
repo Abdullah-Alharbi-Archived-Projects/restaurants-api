@@ -14,5 +14,5 @@
   "etag": false,
   "powered-by": true,
   "saltRounds": 10,
-  "unsplash": "https://api.unsplash.com/photos/random?client_id=76de99283a5a8e40cba56f165d9d30028f931ac37c0c50a47cc250583c4f5631&query=restaurants"
+  "unsplash": "https://api.unsplash.com/photos/random?client_id=76de99283a5a8e40cba56f165d9d30028f931ac37c0c50a47cc250583c4f5631&query="
 }

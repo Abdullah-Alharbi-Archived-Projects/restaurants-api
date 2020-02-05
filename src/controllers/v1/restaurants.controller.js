@@ -25,19 +25,19 @@ async function create(request, response) {
 
   let restaurant = new Restaurant({ name, address });
 
-  const unsplash = config.get("unsplash");
-  let { data: images } = await axios.get(unsplash + "&count=10");
+  // const unsplash = config.get("unsplash");
+  // let { data: images } = await axios.get(unsplash + "restaurants&count=5");
 
-  images = images.map(image => new Image({ path: image.urls.regular }));
+  // images = images.map(image => new Image({ path: image.urls.regular }));
 
-  const {
-    data: {
-      urls: { regular }
-    }
-  } = await axios.get(unsplash);
-  restaurant.logoPath = new Image({ path: regular });
+  // const {
+  //   data: {
+  //     urls: { regular }
+  //   }
+  // } = await axios.get(unsplash);
+  // restaurant.logoPath = new Image({ path: regular });
   restaurant.user = request.user._id;
-  restaurant.images = images;
+  // restaurant.images = images;
   restaurant = (await restaurant.save()).populate("user");
   response.status(201).send({ message: "Created", restaurant });
 }
