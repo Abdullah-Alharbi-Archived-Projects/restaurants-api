@@ -1,4 +1,8 @@
+const config = require("config");
+// const uuid = require("uuid");
+const axios = require("axios");
 const Restaurant = require("../../models/Restaurant");
+const { Image } = require("../../models/Image");
 
 async function index(request, response) {
   const restaurants = await Restaurant.find().populate("user");
@@ -20,7 +24,20 @@ async function create(request, response) {
   // TODO: validate data
 
   let restaurant = new Restaurant({ name, address });
+
+  const unsplash = config.get("unsplash");
+  let { data: images } = await axios.get(unsplash + "&count=10");
+
+  images = images.map(image => new Image({ path: image.urls.regular }));
+
+  const {
+    data: {
+      urls: { regular }
+    }
+  } = await axios.get(unsplash);
+  restaurant.logoPath = new Image({ path: regular });
   restaurant.user = request.user._id;
+  restaurant.images = images;
   restaurant = (await restaurant.save()).populate("user");
   response.status(201).send({ message: "Created", restaurant });
 }

@@ -3,6 +3,8 @@ const { MenuItemModel: MenuItem } = require("../../models/MenuItem");
 const uploadService = require("../../services/imageUpload");
 const { User } = require("../../models/User");
 const { Image } = require("../../models/Image");
+const config = require("config");
+const axios = require("axios");
 const _ = require("lodash");
 
 async function index(request, response) {
@@ -49,6 +51,13 @@ async function create(request, response) {
         });
       }
     }
+
+    const unsplash = config.get("unsplash");
+    let { data: images } = await axios.get(unsplash + "&count=10");
+
+    images = images.map(image => new Image({ path: image.urls.regular }));
+
+    item.images = images;
 
     restaurant.menu.push(item);
     const { menu } = await restaurant.save();
