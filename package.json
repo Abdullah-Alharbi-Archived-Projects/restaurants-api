@@ -12,7 +12,7 @@
     "@google/maps": "^1.1.0",
     "@hapi/joi": "^17.1.0",
     "axios": "^0.19.2",
-    "bcrypt": "^3.0.7",
+    "bcrypt": "^5.0.0",
     "compression": "^1.7.4",
     "config": "^3.2.5",
     "cors": "^2.8.5",
